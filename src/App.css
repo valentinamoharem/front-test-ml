@@ -1,36 +1,27 @@
 .App {
   text-align: center;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
+  height: 1500px;
+  background-color: #eee;
 }
 
 .App-navbar {
   display: flex;
   flex-direction: row;
   height: 50px;
-  background-color: yellow;
+  background-color: #ffe600;
   padding: 0 10vw;
+}
+
+.App-logo {
+  margin: 0 1vw;
 }
 
 
 .App-searchbar {
   display: flex;
   flex-direction: row;
-  height: 30px;
-  margin: 10px auto;
+  height: 35px;
+  margin: 7.5px auto;
   align-self: baseline;
 }
 
@@ -38,6 +29,35 @@
   border: 0;
   outline: none;
   padding: 0 1vw;
-  width: 47vw;
-  color: #a3a3a3;
+  width: 50vw;
+  color: #999;
+}
+
+.App-search-icon-container {
+  height: 35px;
+  width: 35px;
+  background-color: #eee;
+}
+
+.App-search-icon {
+  height: 15px;
+  width: 15px;
+  margin: 10px;
+}
+
+.App-content {
+  display: flex;
+  flex-direction: column;
+  column-gap: 5px;
+  background-color: #fff;
+  height: auto;
+  width: 60vw;
+  margin: 35px auto;
+}
+
+.App-result {
+  width: 95%;
+  height: 300px;
+  margin: 15px auto;
+  background-color: #0d919b;
 }

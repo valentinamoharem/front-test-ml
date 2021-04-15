@@ -1,11 +1,13 @@
 import Searchbar from './Searchbar';
 
 const Navbar = () => {
-    // navbar + searchbar
-    // container, logo, searchbar component
+
+    // TO-DO
+    // fix proportions
+
     return (
         <div className='App-navbar'>
-                <Searchbar />
+            <Searchbar />
         </div>
     );
 }
