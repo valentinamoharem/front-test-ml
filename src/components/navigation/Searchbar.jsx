@@ -4,7 +4,7 @@ import searchIcon from '../../assets/ic_Search.png';
 const Searchbar = () => {
 
     // TO-DO
-    // fix proportions and add search logic
+    // add search logic
     // handle input change and onkeydown (enter key) triggers
 
     return (

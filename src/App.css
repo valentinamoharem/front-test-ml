@@ -1,6 +1,13 @@
+hr {
+  margin: 0 16px;
+  height: 1px;
+  background-color: #eee;
+  border: none;
+}
+
 .App {
   text-align: center;
-  height: 1500px;
+  height: 1100px;
   background-color: #eee;
 }
 
@@ -29,7 +36,7 @@
   border: 0;
   outline: none;
   padding: 0 1vw;
-  width: 50vw;
+  width: 800px;
   color: #999;
 }
 
@@ -45,19 +52,69 @@
   margin: 10px;
 }
 
+.App-breadcrumbs {
+  color: #666;
+  text-align: left;
+  width: 932px;
+  margin: 16px auto;
+  font-size: 14px;
+}
+
 .App-content {
   display: flex;
   flex-direction: column;
   column-gap: 5px;
   background-color: #fff;
   height: auto;
-  width: 60vw;
-  margin: 35px auto;
+  width: 932px;
+  margin: 0 auto;
 }
 
 .App-result {
-  width: 95%;
-  height: 300px;
-  margin: 15px auto;
-  background-color: #0d919b;
+  width: 900px;
+  height: 212px;
+  margin: 16px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+}
+
+.App-result-img {
+  width: 180px;
+  height: 180px;
+  margin: 16px;
+  border-radius: 4px;
+  background-color: #ccc;
+}
+
+.App-result-data {
+  width: 475px;
+  height: 180px;
+  margin: 16px 0;
+  text-align: left;
+  color: #333;
+}
+
+.App-result-data-price {
+  font-size: 24px;
+  margin-bottom: 0;
+  margin-top: 16px;
+}
+
+.App-result-data-detail {
+  font-size: 18px;
+  margin-top: 32px;
+}
+
+.App-result-loc {
+  width: 180px;
+  height: 180px;
+  margin: 16px;
+  text-align: left;
+}
+
+.App-result-loc-detail {
+  font-size: 12px;
+  margin-top: 24px;
+  color: #666;
 }
