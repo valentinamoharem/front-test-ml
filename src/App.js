@@ -2,6 +2,7 @@ import './App.css';
 import Navbar from './components/navigation/Navbar';
 import Content from './components/Content';
 import Breadcrumbs from './components/navigation/Breadcrumbs';
+import Detail from './components/Detail';
 
 function App() {
 
@@ -16,7 +17,8 @@ function App() {
     <div className="App">
       <Navbar />
       <Breadcrumbs />
-      <Content />
+      {/* <Content /> */}
+      <Detail />
     </div>
   );
 }
