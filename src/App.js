@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import Navbar from './components/navigation/Navbar';
 import Content from './components/Content';
@@ -13,12 +14,21 @@ function App() {
   
   // handle responsiveness
 
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    fetch('http://localhost:3001/api') 
+      .then((res) => res.json())
+      .then((data) => setData(data.message));
+  }, []);
+
   return (
     <div className="App">
       <Navbar />
       <Breadcrumbs />
       {/* <Content /> */}
-      <Detail />
+      <p>{!data ? "Loading..." : data}</p>
+      {/* <Detail /> */}
     </div>
   );
 }
