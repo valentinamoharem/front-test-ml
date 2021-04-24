@@ -26,8 +26,7 @@ function App() {
     <div className="App">
       <Navbar />
       <Breadcrumbs />
-      {/* <Content /> */}
-      <p>{!data ? "Loading..." : data}</p>
+      <Content />
       {/* <Detail /> */}
     </div>
   );
