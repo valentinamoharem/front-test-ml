@@ -1,21 +1,29 @@
+import { useEffect, useState } from "react";
 import Result from "./Result"
 
 const Content = () => {
 
-    // TO-DO
-    // add parametric logic and map through resutls from api response
+    // map through resutls from api response
 
-    // handle result order
+    const [results, setResults] = useState([{"id": 'String',
+    "title": 'String',
+    "price": {
+        "currency": 'String',
+        "amount": 'String',
+        "decimals": 'String'
+    },
+    "picture": 'String',
+    "condition": 'String',
+    "free_shipping": false}])
 
     return ( 
         <div className='App-content'>
-            <Result />
-            <hr />
-            <Result />
-            <hr />
-            <Result />
-            <hr />
-            <Result />
+            {results && results.map(r => {
+                return <div>
+                    <Result result={r} />
+                    <hr />
+                </div>
+            })}
         </div>
      );
 }

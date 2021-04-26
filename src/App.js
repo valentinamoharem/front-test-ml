@@ -14,12 +14,9 @@ function App() {
   
   // handle responsiveness
 
-  const [data, setData] = React.useState(null);
-
   React.useEffect(() => {
-    fetch('http://localhost:3001/api') 
+    fetch('http://localhost:3001/')
       .then((res) => res.json())
-      .then((data) => setData(data.message));
   }, []);
 
   return (

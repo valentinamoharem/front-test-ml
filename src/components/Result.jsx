@@ -1,26 +1,23 @@
-const Result = () => {
+const Result = props => {
 
     // TO-DO
     // add icon for shipping (cond.)
-    // add parametric data
-    // get data from api response
+    // add parametric location
 
     return (
         <div className='App-result'>
-            <div className='App-result-img'>
-
-            </div>
+            <img src={props.result.picture} className='App-result-img' alt="search result image" />
             <div className='App-result-data'>
-                <p className='App-result-data-price'>$1000</p>
+                <p className='App-result-data-price'>{props.result.price.currency + props.result.price.amount}</p>
                 <div className='App-result-data-detail-container'>
-                    <p className='App-result-data-detail'>Nombre del producto</p>
+                    <p className='App-result-data-detail'>{props.result.title}</p>
                 </div>
             </div>
             <div className='App-result-loc'>
                 <p className='App-result-loc-detail'>Capital Federal</p>
             </div>
         </div>
-     );
+    );
 }
- 
+
 export default Result;

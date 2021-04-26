@@ -52,6 +52,5 @@
   "bugs": {
     "url": "https://github.com/valentinamoharem/front-test-ml/issues"
   },
-  "homepage": "https://github.com/valentinamoharem/front-test-ml#readme",
-  "proxy": "http://localhost:3001"
+  "homepage": "https://github.com/valentinamoharem/front-test-ml#readme"
 }

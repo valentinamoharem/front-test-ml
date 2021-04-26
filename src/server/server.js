@@ -11,10 +11,18 @@ app.use(cors({
 
 app.get("/", (req, res) => res.send("Server successfully connected"));
 
+// TO-DO
+// test responses
+// test logic from client
+// add price logic to split decimals
+
 // ENDPOINT 1 
 // URL: /items?search=
 // REQUEST: /api/items?q=​:query 
 // API: https://api.mercadolibre.com/sites/MLA/search?q=​:query
+
+// get item location
+// get categories
 
 app.get("/api/items", async function (req, res) {
   const q = req.query.q;
@@ -25,14 +33,17 @@ app.get("/api/items", async function (req, res) {
 
   const items = [];
   json.results.slice(0,5).map(r => {
+
+    let json_price = r.price.toString().split('.');
+
     items.push(
         {
           "id": r.id,
           "title": r.title,
           "price": {
             "currency": r.currency_id,
-            "amount": r.price,
-            "decimals": r.price // fix
+            "amount": json_price[0],
+            "decimals": json_price[1] || '00'
           },
           "picture": r.thumbnail,
           "condition": r.condition,
@@ -67,19 +78,20 @@ app.get("/api/items/:id", async function (req, res) {
   const json = await fetch_response.json();
   const json_description = await fetch_response_description.json();
 
+  const json_price = json.price.toString().split('.');
+
   const custom_response = {
     author: {
       name: "Valentina",
       lastname: "Moscato"
     },
-    categories: json.available_filters["category"],
     item: {
         "id": json.id,
         "title": json.title,
         "price": {
         "currency": json.currency_id,
-        "amount": json.price,
-        "decimals": json.price, // fix
+        "amount": json_price[0],
+        "decimals": json_price[1] || '00'
         },
         "picture": json.pictures[0].url,
         "condition": json.condition,
