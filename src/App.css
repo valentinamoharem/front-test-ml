@@ -50,6 +50,7 @@ hr {
   height: 15px;
   width: 15px;
   margin: 10px;
+  cursor: pointer;
 }
 
 .App-breadcrumbs {
@@ -58,6 +59,16 @@ hr {
   width: 932px;
   margin: 16px auto;
   font-size: 14px;
+}
+
+.App-content-alt {
+  display: flex;
+  flex-direction: column;
+  column-gap: 5px;
+  background-color: #eee;
+  height: 900px;
+  width: 932px;
+  margin: auto;
 }
 
 .App-content {
@@ -101,6 +112,10 @@ hr {
   margin-top: 16px;
 }
 
+.App-result-data-shipping-icon {
+  margin: 0 5px;
+}
+
 .App-result-data-detail {
   font-size: 18px;
   margin-top: 32px;
@@ -139,11 +154,16 @@ hr {
   text-align: left;
 }
 
-.App-detail-img {
+.App-detail-img-container {
   width: 680px;
   height: 680px;
-  background-color: #ccc;
+  background-color: #fff;
   margin: 32px 0;
+}
+
+.App-detail-img {
+  object-fit: fill;
+  height: 680px;
 }
 
 .App-detail-button, .App-detail-button:focus {
@@ -169,6 +189,11 @@ hr {
 .App-detail-price {
   font-size: 46px;
   margin: 32px 0;
+}
+
+.App-detail-price-decimals {
+  font-size: 20px;
+  vertical-align: text-top;
 }
 
 .App-detail-description {

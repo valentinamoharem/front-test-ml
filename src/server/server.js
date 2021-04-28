@@ -32,7 +32,8 @@ app.get("/api/items", async function (req, res) {
   const json = await fetch_response.json();
 
   const items = [];
-  json.results.slice(0,5).map(r => {
+  const categories = json.available_filters[0].values;
+  json.results.slice(0,4).map(r => {
 
     let json_price = r.price.toString().split('.');
 
@@ -47,19 +48,20 @@ app.get("/api/items", async function (req, res) {
           },
           "picture": r.thumbnail,
           "condition": r.condition,
+          "location": r.address.state_name,
           "free_shipping": r.shipping.free_shipping
         }
     )
   })
 
-  const custom_response = {
+  const custom_response = [{
     author: {
       name: "Valentina",
       lastname: "Moscato"
     },
-    categories: json.available_filters["category"],
-    items: items
-  }
+    items: items,
+    categories: categories
+  }]
 
   res.send(custom_response);
 })
@@ -67,12 +69,12 @@ app.get("/api/items", async function (req, res) {
 // ENDPOINT 2
 // URL: /items/:id 
 // REQUEST: /api/items/​:id 
-// APIs: https://api.mercadolibre.com/items/​:id / https://api.mercadolibre.com/items/​:id​/description
+// APIs: https://api.mercadolibre.com/items/​:id?include_attributes=all / https://api.mercadolibre.com/items/​:id​/description
 
 app.get("/api/items/:id", async function (req, res) {
   const id = req.params.id;
-  const api_url = encodeURI(`https://api.mercadolibre.com/items/​` + id);
-  const api_url_description = encodeURI(`https://api.mercadolibre.com/items/​` + id + `/description`);
+  const api_url = encodeURI(`https://api.mercadolibre.com/items/​` + id + `?include_attributes=all`);
+  const api_url_description = encodeURI(`https://api.mercadolibre.com/items/​${id}/description`);
   const fetch_response = await fetch(api_url);
   const fetch_response_description = await fetch(api_url_description);
   const json = await fetch_response.json();
@@ -80,7 +82,7 @@ app.get("/api/items/:id", async function (req, res) {
 
   const json_price = json.price.toString().split('.');
 
-  const custom_response = {
+  const custom_response = [{
     author: {
       name: "Valentina",
       lastname: "Moscato"
@@ -89,17 +91,17 @@ app.get("/api/items/:id", async function (req, res) {
         "id": json.id,
         "title": json.title,
         "price": {
-        "currency": json.currency_id,
-        "amount": json_price[0],
-        "decimals": json_price[1] || '00'
-        },
-        "picture": json.pictures[0].url,
-        "condition": json.condition,
-        "free_shipping": json.shipping.free_methods[0].rule.free_shipping_flag,
+          "currency": json.currency_id,
+          "amount": json_price[0],
+          "decimals": json_price[1] || '00'
+          },
+          "picture": json.pictures[0].url,
+          "condition": json.condition,
+          "free_shipping": json.shipping.free_methods[0].rule.free_shipping_flag,
         "sold_quantity": json.sold_quantity,
         "description": json_description.description,
       }
-  }
+  }]
 
   res.send(custom_response);
 })

@@ -1,24 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import ContentContext from "../contexts/ContentContext";
 import Result from "./Result"
 
 const Content = () => {
+    const { results, history } = useContext(ContentContext);
 
-    // map through resutls from api response
-
-    const [results, setResults] = useState([{"id": 'String',
-    "title": 'String',
-    "price": {
-        "currency": 'String',
-        "amount": 'String',
-        "decimals": 'String'
-    },
-    "picture": 'String',
-    "condition": 'String',
-    "free_shipping": false}])
+    if(!results[0] || results[0].length == 0){
+        if(history > 1) {
+            return <div className='App-content-alt'>No se encontraron resultados. Intentá de nuevo.</div>
+        } else {
+            return <div className='App-content-alt'>No content</div>
+        }
+    }
 
     return ( 
         <div className='App-content'>
-            {results && results.map(r => {
+            {results[0] && results[0].items.map(r => {
                 return <div>
                     <Result result={r} />
                     <hr />
