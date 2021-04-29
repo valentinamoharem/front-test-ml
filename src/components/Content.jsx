@@ -9,7 +9,7 @@ const Content = () => {
         if(history > 1) {
             return <div className='App-content-alt'>No se encontraron resultados. Intentá de nuevo.</div>
         } else {
-            return <div className='App-content-alt'>No content</div>
+            return <div className='App-content-alt'></div>
         }
     }
 
@@ -17,7 +17,7 @@ const Content = () => {
         <div className='App-content'>
             {results[0] && results[0].items.map(r => {
                 return <div>
-                    <Result result={r} />
+                    <Result key={r.id} result={r} />
                     <hr />
                 </div>
             })}
