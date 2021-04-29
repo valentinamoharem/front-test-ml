@@ -73,34 +73,41 @@ app.get("/api/items/:id", async function (req, res) {
   const json = await fetch_response.json();
   const json_description = await fetch_response_description.json();
 
+  // if (json.error) {
+  //   res.send(req,res,json.error);
+  // }
+
   const json_price = json.price && json.price.toString().split('.');
 
-  console.log(json)
+  const custom_response = [{
+    author: {
+      name: "Valentina",
+      lastname: "Moscato"
+    },
+    item: {
+        "id": json.id,
+        "title": json.title,
+        "price": {
+          "currency": json.currency_id,
+          "amount": json_price[0] && json_price[0],
+          "decimals": json_price[1] && json_price[1] || '00'
+          },
+          "picture": json.pictures[0].url,
+          "condition": json.condition,
+          "free_shipping": json.shipping.free_methods[0].rule.free_shipping_flag,
+        "sold_quantity": json.sold_quantity,
+        "category_id": json.category_id,
+        "description": json_description.description.plain_text,
+      }
+  }]   
 
-  // const custom_response = [{
-  //   author: {
-  //     name: "Valentina",
-  //     lastname: "Moscato"
-  //   },
-  //   item: {
-  //       "id": json.id,
-  //       "title": json.title,
-  //       "price": {
-  //         "currency": json.currency_id,
-  //         "amount": json_price[0] && json_price[0],
-  //         "decimals": json_price[1] && json_price[1] || '00'
-  //         },
-  //         "picture": json.pictures[0].url,
-  //         "condition": json.condition,
-  //         "free_shipping": json.shipping.free_methods[0].rule.free_shipping_flag,
-  //       "sold_quantity": json.sold_quantity,
-  //       "category_id": json.category_id,
-  //       "description": json_description.description,
-  //     }
-  // }]   
-
-  // res.send(custom_response);
+  res.send(custom_response || json);
 })
+
+// ENDPOINT 3
+// REQUEST: /api/items/description/:id
+// API: https://api.mercadolibre.com/items/​:id/description
+
 
 app.get("/api/items/description/:id", async function (req, res) {
   const id = req.params.id;
@@ -120,6 +127,10 @@ app.get("/api/items/description/:id", async function (req, res) {
 
   res.send(custom_response);
 })
+
+// ENDPOINT 4
+// REQUEST: /api/categories/:id
+// API: https://api.mercadolibre.com/categories/:id
 
 app.get("/api/categories/:id", async function (req, res) {
   const id = req.params.id;

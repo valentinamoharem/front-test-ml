@@ -12,16 +12,41 @@ const Detail = () => {
 
     React.useEffect(async () => {
 
-        // const fetchedProduct = await fetch(`http://localhost:3001/api/items/${id}`);
-        // setProduct(fetchedProduct.data);
+        // const fetchedProduct = await fetch(`http://localhost:3001/api/items/${id}`)
+        //     .then(res => res.json())
+        //     .catch(error => {
+        //         console.error(error.message);
+        //       });
 
-        const fetchedProduct = await fetch(`http://localhost:3001/api/items/description/${id}`).then(res => res.json());
+        const fetchedProductDescription = await fetch(`http://localhost:3001/api/items/description/${id}`)
+            .then(res => res.json())
+            .catch(error => {
+                console.error(error.message);
+              });
 
         if (!results) {
             return
         }
         
         const findItem = results[0].items.find(i => i.id == id)
+
+        // setProduct(fetchedProduct[0].item)
+
+        // setProduct({
+        //     "id": fetchedProduct[0].item.id || findItem.id,
+        //     "title": fetchedProduct[0].item.title || findItem.title,
+        //     "price": {
+        //         "currency": fetchedProduct[0].item.price.currency_id || findItem.price.currency_id,
+        //         "amount": fetchedProduct[0].item.price.amount || findItem.price.amount,
+        //         "decimals": fetchedProduct[0].item.price.decimals || findItem.price.decimals
+        //     },
+        //     "picture": fetchedProduct[0].item.picture || findItem.picture,
+        //     "condition": fetchedProduct[0].item.condition || findItem.condition,
+        //     "free_shipping": fetchedProduct[0].item.free_shipping || findItem.free_shipping,
+        //     "category_id": fetchedProduct[0].item.category_id || findItem.category_id,
+        //     "sold_quantity": fetchedProduct[0].item.id || findItem.sold_quantity || '',
+        //     "description": fetchedProduct[0].item.description.plain_text || fetchedProductDescription[0].description.plain_text || 'No se encontró descripción para este producto.',
+        // })
 
         setProduct({
             "id": findItem.id,
@@ -36,8 +61,9 @@ const Detail = () => {
             "free_shipping": findItem.free_shipping,
             "category_id": findItem.category_id,
             "sold_quantity": findItem.sold_quantity || '',
-            "description": fetchedProduct[0].description.plain_text || 'No se encontró descripción para este producto.',
+            "description": fetchedProductDescription[0].description.plain_text || 'No se encontró descripción para este producto.',
         })
+
     }, []);
 
     if (!product || !results) {
