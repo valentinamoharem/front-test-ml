@@ -15,6 +15,6 @@ You will also see any lint errors in the console.
 Runs the app server in the development mode.\
 Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
 
-## (*) Both commands are necessary for the app to function as expected.
+#### (*) Both commands are necessary for the app to function as expected.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
